@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+/* Tailwind v4: dark:* depends on .dark */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  html {
+    font-size: 16px;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    letter-spacing: normal;
+  }
+
+  html,
+  body {
+    overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  @keyframes aurora-drift-1 {
+    0% { transform: translate3d(-2%, -1%, 0) scale(1.02); opacity: 0.85; }
+    50% { transform: translate3d(2%, 1%, 0) scale(1.06); opacity: 1; }
+    100% { transform: translate3d(-2%, -1%, 0) scale(1.02); opacity: 0.85; }
+  }
+
+  @keyframes aurora-drift-2 {
+    0% { transform: translate3d(2%, 0%, 0) scale(1.05); opacity: 0.55; }
+    50% { transform: translate3d(-2%, 1%, 0) scale(1.02); opacity: 0.75; }
+    100% { transform: translate3d(2%, 0%, 0) scale(1.05); opacity: 0.55; }
+  }
+
+  .aurora-drift-1 { will-change: transform, opacity; animation: aurora-drift-1 18s ease-in-out infinite; }
+  .aurora-drift-2 { will-change: transform, opacity; animation: aurora-drift-2 26s ease-in-out infinite; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .aurora-drift-1,
+    .aurora-drift-2 { animation: none !important; }
+  }
+}
+
+
