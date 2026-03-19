@@ -14,3 +14,24 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## Codex Handoff
+
+```text
+Project: zoom-proof-layout
+Working directory: c:\Users\gonza\Documents\GitHub\zoom-proof-layout
+
+Goal:
+- Recreate the current React + Vite layout project and confirm it runs/builds.
+
+Run:
+1) npm install
+2) npm run lint
+3) npm run dev
+4) npm run build
+5) npm run preview (optional runtime smoke test)
+
+Validate:
+- Local dev server runs with HMR.
+- Production build succeeds with no blocking errors.
+```
