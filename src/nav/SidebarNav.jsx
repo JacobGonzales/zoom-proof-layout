@@ -2,8 +2,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
-import { navSections } from "./navConfig";
-import { getNavIcon } from "./NavIcons";
+import { getNavIcon } from "./getNavIcon";
 
 function getNavItemClass({ isActive }) {
   const base =
@@ -21,10 +20,10 @@ function getNavItemClass({ isActive }) {
   ].join(" ");
 }
 
-function SidebarNav({ onNavigate }) {
+function SidebarNav({ sections, onNavigate }) {
   return (
     <div>
-      {navSections.map((section) => (
+      {sections.map((section) => (
         <div key={section.title}>
           <div className="px-6 pt-6 text-xs font-extrabold uppercase tracking-wider text-slate-500 dark:text-white/60">
             {section.title}
@@ -64,10 +63,25 @@ function SidebarNav({ onNavigate }) {
 }
 
 SidebarNav.propTypes = {
+  sections: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      items: PropTypes.arrayOf(
+        PropTypes.shape({
+          key: PropTypes.string.isRequired,
+          label: PropTypes.string.isRequired,
+          to: PropTypes.string.isRequired,
+          iconKey: PropTypes.string,
+          iconColor: PropTypes.string,
+        }),
+      ).isRequired,
+    }),
+  ),
   onNavigate: PropTypes.func,
 };
 
 SidebarNav.defaultProps = {
+  sections: [],
   onNavigate: null,
 };
 
