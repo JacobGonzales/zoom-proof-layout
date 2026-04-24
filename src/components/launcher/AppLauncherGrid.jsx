@@ -1,18 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import GlassCard from "../../ui/GlassCard";
 import AppLauncherTile from "./AppLauncherTile";
 
 function AppLauncherGrid({ apps }) {
   return (
-    <div className="mt-6">
-      <GlassCard title="Applications" subtitle="Nine demo workspaces with unique sidebars and routes.">
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {apps.map((app) => (
-            <AppLauncherTile key={app.id} app={app} />
-          ))}
-        </div>
-      </GlassCard>
+    <div className="mt-6 grid grid-cols-[repeat(auto-fit,minmax(18rem,1fr))] gap-4 2xl:grid-cols-[repeat(auto-fit,minmax(19.5rem,1fr))]">
+      {apps.map((app) => (
+        <AppLauncherTile key={app.id} app={app} />
+      ))}
     </div>
   );
 }

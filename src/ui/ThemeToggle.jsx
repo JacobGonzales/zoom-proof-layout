@@ -32,7 +32,7 @@ function MoonStarsIcon() {
   );
 }
 
-function ThemeToggle({ className }) {
+function ThemeToggle({ className, compact }) {
   const [theme, setTheme] = useState(() => getCurrentTheme());
   const isDark = theme === "dark";
 
@@ -46,10 +46,11 @@ function ThemeToggle({ className }) {
       type="button"
       onClick={onToggle}
       className={[
-        "relative inline-flex h-11 w-24 items-center rounded-full p-1",
+        "relative inline-flex items-center rounded-full p-1",
         "select-none backdrop-blur shadow-sm transition-colors",
         "bg-slate-900/5 ring-1 ring-slate-900/10 hover:bg-slate-900/10",
         "dark:bg-white/10 dark:ring-white/10 dark:hover:bg-white/15",
+        compact ? "h-10 w-[4.5rem]" : "h-11 w-24",
         className || "",
       ].join(" ")}
       aria-label="Toggle theme"
@@ -58,20 +59,30 @@ function ThemeToggle({ className }) {
       <span className="pointer-events-none absolute inset-1 rounded-full bg-gradient-to-r from-[#5e73e5]/15 via-cyan-500/10 to-fuchsia-500/10 dark:from-[#5e73e5]/25" />
       <span
         className={[
-          "absolute top-1 grid h-9 w-9 place-items-center rounded-full",
+          "absolute top-1 grid place-items-center rounded-full",
           "bg-white shadow-md ring-1 ring-black/10",
           "transition-transform duration-300 ease-out",
-          isDark ? "translate-x-[56px]" : "translate-x-0",
+          compact ? "h-8 w-8" : "h-9 w-9",
+          compact ? (isDark ? "translate-x-[34px]" : "translate-x-0") : isDark ? "translate-x-[56px]" : "translate-x-0",
         ].join(" ")}
         style={{ left: 4 }}
       >
-        <span className="text-[#5e73e5]">{isDark ? <MoonStarsIcon /> : <SunIcon />}</span>
+        <span className="text-[#5e73e5]">
+          {isDark ? <MoonStarsIcon /> : <SunIcon />}
+        </span>
       </span>
     </button>
   );
 }
 
-ThemeToggle.propTypes = { className: PropTypes.string };
-ThemeToggle.defaultProps = { className: "" };
+ThemeToggle.propTypes = {
+  className: PropTypes.string,
+  compact: PropTypes.bool,
+};
+
+ThemeToggle.defaultProps = {
+  className: "",
+  compact: false,
+};
 
 export default ThemeToggle;

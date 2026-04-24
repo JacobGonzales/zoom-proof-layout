@@ -6,7 +6,6 @@ import {
 import AppLauncherGrid from "../components/launcher/AppLauncherGrid";
 import LauncherArchitectureCards from "../components/launcher/LauncherArchitectureCards";
 import LauncherHighlights from "../components/launcher/LauncherHighlights";
-import LauncherStatsGrid from "../components/launcher/LauncherStatsGrid";
 import AppShell from "../ui/AppShell";
 
 export default function Dashboard() {
@@ -16,9 +15,8 @@ export default function Dashboard() {
       title="Application launcher"
       navSections={mainNavSections}
     >
-      <LauncherStatsGrid workspaceCount={appCatalog.length} />
-      <LauncherHighlights suggestedApps={appCatalog.slice(0, 3)} />
       <AppLauncherGrid apps={appCatalog} />
+      <LauncherHighlights suggestedApps={appCatalog.slice(0, 3)} />
       <LauncherArchitectureCards />
     </AppShell>
   );

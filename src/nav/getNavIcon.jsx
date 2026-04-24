@@ -1,12 +1,20 @@
 import React from "react";
 import {
+  ApertureIcon,
   BellIcon,
   ChartIcon,
   CompassIcon,
   DashboardIcon,
+  FileIcon,
   FolderIcon,
   GridIcon,
+  LayersIcon,
+  MapPlotIcon,
+  NodesIcon,
   PeopleIcon,
+  RadarIcon,
+  RocketIcon,
+  RouteIcon,
   SettingsIcon,
   ShieldIcon,
   SparkIcon,
@@ -16,12 +24,16 @@ import {
 
 export function getNavIcon(iconKey) {
   switch (iconKey) {
+    case "aperture":
+      return <ApertureIcon />;
     case "dashboard":
       return <DashboardIcon />;
     case "tables":
       return <TablesIcon />;
     case "chart":
       return <ChartIcon />;
+    case "map":
+      return <MapPlotIcon />;
     case "shield":
       return <ShieldIcon />;
     case "spark":
@@ -40,6 +52,18 @@ export function getNavIcon(iconKey) {
       return <FolderIcon />;
     case "grid":
       return <GridIcon />;
+    case "layers":
+      return <LayersIcon />;
+    case "nodes":
+      return <NodesIcon />;
+    case "file":
+      return <FileIcon />;
+    case "radar":
+      return <RadarIcon />;
+    case "rocket":
+      return <RocketIcon />;
+    case "route":
+      return <RouteIcon />;
     default:
       return null;
   }

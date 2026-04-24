@@ -1,33 +1,10 @@
-// src/nav/navConfig.js
-export const mainNavSections = [
-  {
-    title: "Platform",
-    items: [
-      {
-        key: "dashboard",
-        label: "App Launcher",
-        to: "/dashboard",
-        iconKey: "dashboard",
-        iconColor: "#5e73e5",
-      },
-      {
-        key: "tables",
-        label: "Tables",
-        to: "/tables",
-        iconKey: "tables",
-        iconColor: "#06b6d4",
-      },
-    ],
-  },
-];
-
 const appBlueprints = [
   {
-    id: "revenue-ops",
-    label: "Revenue Ops",
+    id: "digital-intelligence",
+    label: "Digital Intelligence",
     tagline: "Forecast and pipeline command",
     description: "Monitor deal movement, rep pacing, and expansion signals from one workspace.",
-    iconKey: "chart",
+    iconKey: "aperture",
     accent: "#5e73e5",
     health: "96%",
     members: "18",
@@ -39,11 +16,11 @@ const appBlueprints = [
     region: "North America",
   },
   {
-    id: "client-success",
-    label: "Client Success",
+    id: "icbm-insights",
+    label: "ICBM Insights",
     tagline: "Accounts, renewals, and health",
     description: "Keep renewal risk, adoption trends, and onboarding milestones visible.",
-    iconKey: "people",
+    iconKey: "radar",
     accent: "#06b6d4",
     health: "92%",
     members: "22",
@@ -55,11 +32,11 @@ const appBlueprints = [
     region: "Global",
   },
   {
-    id: "risk-monitor",
-    label: "Risk Monitor",
+    id: "lpd-evaluator",
+    label: "LPD Evaluator",
     tagline: "Security operations and policy drift",
     description: "Track flagged activity, open investigations, and policy exceptions in motion.",
-    iconKey: "shield",
+    iconKey: "nodes",
     accent: "#ef4444",
     health: "89%",
     members: "14",
@@ -71,11 +48,11 @@ const appBlueprints = [
     region: "Enterprise",
   },
   {
-    id: "field-ops",
-    label: "Field Ops",
+    id: "simon",
+    label: "Simon",
     tagline: "Dispatch, crews, and site readiness",
     description: "Coordinate schedules, equipment, and live job readiness across regions.",
-    iconKey: "grid",
+    iconKey: "route",
     accent: "#f59e0b",
     health: "94%",
     members: "31",
@@ -87,11 +64,11 @@ const appBlueprints = [
     region: "Mountain + West",
   },
   {
-    id: "campaign-lab",
-    label: "Campaign Lab",
+    id: "sentinel-milcon",
+    label: "Sentinel Milcon",
     tagline: "Launch planning and content flow",
     description: "See launch timing, creative reviews, and channel readiness in one place.",
-    iconKey: "spark",
+    iconKey: "shield",
     accent: "#8b5cf6",
     health: "93%",
     members: "17",
@@ -103,11 +80,11 @@ const appBlueprints = [
     region: "Digital",
   },
   {
-    id: "support-desk",
-    label: "Support Desk",
+    id: "sentinel-transition",
+    label: "Sentinel Transition",
     tagline: "Escalations, queues, and SLAs",
     description: "Balance incoming ticket load with escalation response and service quality.",
-    iconKey: "bell",
+    iconKey: "compass",
     accent: "#0ea5e9",
     health: "91%",
     members: "26",
@@ -119,27 +96,28 @@ const appBlueprints = [
     region: "24/7 Coverage",
   },
   {
-    id: "finance-hub",
-    label: "Finance Hub",
+    id: "rams",
+    label: "RAMS - Real Estate Acquisitions Management System",
+    navLabel: "RAMS",
     tagline: "Approvals, controls, and close work",
     description: "Watch approvals, cash flow checkpoints, and close-week readiness together.",
-    iconKey: "wallet",
+    iconKey: "layers",
     accent: "#10b981",
     health: "97%",
     members: "13",
     automations: "15",
     queueCount: "6",
-    boardLabel: "Approvals",
-    automationLabel: "Controls",
+    boardLabel: "Tract List - ARCGis",
+    automationLabel: "Metrics",
     owner: "Eva Morgan",
     region: "HQ",
   },
   {
-    id: "talent-studio",
-    label: "Talent Studio",
+    id: "generator-1423",
+    label: "1423 Generator",
     tagline: "Hiring, interviews, and onboarding",
     description: "Coordinate hiring plans, active candidates, and onboarding readiness at a glance.",
-    iconKey: "compass",
+    iconKey: "rocket",
     accent: "#f97316",
     health: "90%",
     members: "11",
@@ -149,22 +127,6 @@ const appBlueprints = [
     automationLabel: "Workflows",
     owner: "Sage Brooks",
     region: "People Team",
-  },
-  {
-    id: "inventory-pulse",
-    label: "Inventory Pulse",
-    tagline: "Stock flow and replenishment",
-    description: "Surface low-stock pressure, supplier timing, and inbound recovery signals.",
-    iconKey: "folder",
-    accent: "#14b8a6",
-    health: "95%",
-    members: "20",
-    automations: "18",
-    queueCount: "10",
-    boardLabel: "Supply",
-    automationLabel: "Restocks",
-    owner: "Theo Lane",
-    region: "Warehousing",
   },
 ];
 
@@ -210,7 +172,7 @@ function buildTabs(app) {
       app,
       "board",
       app.boardLabel,
-      "tables",
+      app.id === "rams" ? "map" : "tables",
       `${app.boardLabel} board`,
       `A focused board view for the ${app.boardLabel.toLowerCase()} work currently moving through ${app.label}.`,
       [
@@ -231,9 +193,52 @@ function buildTabs(app) {
     ),
     createTab(
       app,
+      "settings",
+      app.id === "rams" ? "Tract Details" : "Settings",
+      app.id === "rams" ? "file" : "settings",
+      app.id === "rams" ? "Tract details" : `${app.label} settings`,
+      app.id === "rams"
+        ? `Detailed parcel information, acquisition status, and due-diligence notes for the selected tract in ${app.label}.`
+        : `Permission groups, workspace preferences, and environment controls for ${app.label}.`,
+      app.id === "rams"
+        ? [
+            { label: "Selected tract", value: "1" },
+            { label: "Open action items", value: "5" },
+            { label: "Audit freshness", value: "30m ago" },
+          ]
+        : [
+            { label: "Permission groups", value: "4" },
+            { label: "Saved views", value: "12" },
+            { label: "Audit freshness", value: "2h ago" },
+          ],
+      app.id === "rams"
+        ? [
+            `Selected tract record can be opened directly from the tract list`,
+            `Milestones and agency ownership stay visible for acquisition review`,
+            `Supporting due-diligence notes are grouped with the parcel summary`,
+          ]
+        : [
+            `Default notifications are enabled for leads only`,
+            `Brand theming inherits the global platform palette`,
+            `Sandbox access is limited to ops admins`,
+          ],
+      app.id === "rams"
+        ? [
+            `A tract detail packet was generated for morning review`,
+            `Title notes were refreshed from the due-diligence checklist`,
+            `Survey dependencies were pushed to the parcel timeline`,
+          ]
+        : [
+            `A role update was applied to three collaborators`,
+            `Audit logs were exported for monthly review`,
+            `Two dormant API keys were marked for rotation`,
+          ],
+    ),
+    createTab(
+      app,
       "automation",
       app.automationLabel,
-      "spark",
+      app.id === "rams" ? "chart" : "spark",
       `${app.automationLabel} center`,
       `Automation controls for ${app.label}, including orchestration rules, reminders, and approval triggers.`,
       [
@@ -252,29 +257,6 @@ function buildTabs(app) {
         `Fallback notifications were tested with no failures`,
       ],
     ),
-    createTab(
-      app,
-      "settings",
-      "Settings",
-      "settings",
-      `${app.label} settings`,
-      `Permission groups, workspace preferences, and environment controls for ${app.label}.`,
-      [
-        { label: "Permission groups", value: "4" },
-        { label: "Saved views", value: "12" },
-        { label: "Audit freshness", value: "2h ago" },
-      ],
-      [
-        `Default notifications are enabled for leads only`,
-        `Brand theming inherits the global platform palette`,
-        `Sandbox access is limited to ops admins`,
-      ],
-      [
-        `A role update was applied to three collaborators`,
-        `Audit logs were exported for monthly review`,
-        `Two dormant API keys were marked for rotation`,
-      ],
-    ),
   ];
 }
 
@@ -282,6 +264,74 @@ export const appCatalog = appBlueprints.map((app) => ({
   ...app,
   tabs: buildTabs(app),
 }));
+
+export const mainNavSections = [
+  {
+    title: "Platform",
+    items: [
+      {
+        key: "dashboard",
+        label: "App Launcher",
+        to: "/dashboard",
+        iconKey: "dashboard",
+        iconColor: "#5e73e5",
+        defaultExpanded: false,
+        children: appCatalog.map((app) => ({
+          key: `application-${app.id}`,
+          label: app.navLabel || app.label,
+          to: getAppLaunchPath(app.id),
+          iconKey: app.iconKey,
+          iconColor: app.accent,
+        })),
+      },
+    ],
+  },
+  {
+    title: "Account Pages",
+    items: [
+      {
+        key: "profile",
+        label: "Profile",
+        to: "/profile",
+        iconKey: "people",
+        iconColor: "#2563eb",
+      },
+      {
+        key: "sign-out",
+        label: "Sign Out",
+        to: "/sign-out",
+        iconKey: "file",
+        iconColor: "#2563eb",
+      },
+    ],
+  },
+  {
+    title: "Support",
+    items: [
+      {
+        key: "documentation",
+        label: "View Documentation",
+        to: "/documentation",
+        iconKey: "folder",
+        iconColor: "#0f766e",
+      },
+      {
+        key: "page-help",
+        label: "View Page Help",
+        to: "/page-help",
+        iconKey: "compass",
+        iconColor: "#0891b2",
+      },
+      {
+        key: "feedback",
+        label: "Provide Feedback",
+        to: "/feedback",
+        iconKey: "bell",
+        iconColor: "#d97706",
+      },
+    ],
+  },
+];
 
 export function getAppById(appId) {
   return appCatalog.find((app) => app.id === appId);
@@ -314,17 +364,16 @@ export function getAppNavSections(appId) {
         iconColor: app.accent,
       })),
     },
-    {
-      title: "Platform",
-      items: [
-        {
-          key: `${app.id}-launcher`,
-          label: "Back to launcher",
-          to: "/dashboard",
-          iconKey: "grid",
-          iconColor: "#94a3b8",
-        },
-      ],
-    },
+    ...mainNavSections.map((section) => ({
+      ...section,
+      items: section.items.map((item) =>
+        item.key === "dashboard"
+          ? {
+              ...item,
+              autoExpandOnActive: false,
+            }
+          : item,
+      ),
+    })),
   ];
 }

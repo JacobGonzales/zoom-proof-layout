@@ -1,64 +1,71 @@
 // src/nav/SidebarNav.jsx
-import React from "react";
+import React, { useMemo, useState } from "react";
 import PropTypes from "prop-types";
-import { NavLink } from "react-router-dom";
-import { getNavIcon } from "./getNavIcon";
+import { useLocation } from "react-router-dom";
+import CollapsedSidebarRail from "./CollapsedSidebarRail";
+import ExpandedSidebarSections from "./ExpandedSidebarSections";
 
-function getNavItemClass({ isActive }) {
-  const base =
-    "group flex items-center gap-4 rounded-xl px-4 py-3 min-w-0 transition-colors " +
-    "text-sm font-extrabold uppercase tracking-wide";
+function getInitialExpandedState(sections, pathname) {
+  return sections.reduce((acc, section) => {
+    section.items.forEach((item) => {
+      if (item.defaultExpanded === true) {
+        acc[item.key] = true;
+      }
 
-  if (isActive) {
-    return `${base} bg-[#5e73e5]/15 ring-1 ring-[#5e73e5]/25 text-slate-900 dark:text-white`;
-  }
+      if (
+        item.autoExpandOnActive !== false &&
+        item.children?.some((child) => child.to === pathname)
+      ) {
+        acc[item.key] = true;
+      }
+    });
 
-  return [
-    base,
-    "text-slate-700 hover:bg-slate-900/5 hover:text-slate-900",
-    "dark:text-white/80 dark:hover:bg-white/10 dark:hover:text-white",
-  ].join(" ");
+    return acc;
+  }, {});
 }
 
-function SidebarNav({ sections, onNavigate }) {
+function SidebarNav({ sections, onNavigate, collapsed }) {
+  const location = useLocation();
+  const routeExpandedGroups = useMemo(
+    () => getInitialExpandedState(sections, location.pathname),
+    [location.pathname, sections],
+  );
+  const [manualExpandedGroups, setManualExpandedGroups] = useState({});
+
+  function isGroupExpanded(key) {
+    if (Object.prototype.hasOwnProperty.call(manualExpandedGroups, key)) {
+      return manualExpandedGroups[key];
+    }
+
+    return Boolean(routeExpandedGroups[key]);
+  }
+
+  function toggleGroup(key) {
+    setManualExpandedGroups((current) => ({
+      ...current,
+      [key]: !isGroupExpanded(key),
+    }));
+  }
+
+  const expandedGroups = sections.reduce((acc, section) => {
+    section.items.forEach((item) => {
+      acc[item.key] = isGroupExpanded(item.key);
+    });
+    return acc;
+  }, {});
+
+  if (collapsed) {
+    return <CollapsedSidebarRail sections={sections} onNavigate={onNavigate} />;
+  }
+
   return (
-    <div>
-      {sections.map((section) => (
-        <div key={section.title}>
-          <div className="px-6 pt-6 text-xs font-extrabold uppercase tracking-wider text-slate-500 dark:text-white/60">
-            {section.title}
-          </div>
-
-          <nav className="mt-2 px-2 pb-1">
-            {section.items.map((item) => (
-              <NavLink
-                key={item.key}
-                to={item.to}
-                onClick={onNavigate || undefined}
-                className={getNavItemClass}
-              >
-                {({ isActive }) => (
-                  <>
-                    <span
-                      className={[
-                        "shrink-0",
-                        isActive ? "text-[#5e73e5]" : "",
-                      ].join(" ")}
-                      style={!isActive ? { color: item.iconColor } : undefined}
-                    >
-                      {getNavIcon(item.iconKey)}
-                    </span>
-                    <span className="truncate">{item.label}</span>
-                  </>
-                )}
-              </NavLink>
-            ))}
-          </nav>
-
-          <div className="mx-6 my-5 h-px bg-slate-200/80 dark:bg-white/10" />
-        </div>
-      ))}
-    </div>
+    <ExpandedSidebarSections
+      sections={sections}
+      pathname={location.pathname}
+      expandedGroups={expandedGroups}
+      onNavigate={onNavigate}
+      onToggleGroup={toggleGroup}
+    />
   );
 }
 
@@ -70,19 +77,32 @@ SidebarNav.propTypes = {
         PropTypes.shape({
           key: PropTypes.string.isRequired,
           label: PropTypes.string.isRequired,
-          to: PropTypes.string.isRequired,
+          to: PropTypes.string,
           iconKey: PropTypes.string,
           iconColor: PropTypes.string,
+          autoExpandOnActive: PropTypes.bool,
+          defaultExpanded: PropTypes.bool,
+          children: PropTypes.arrayOf(
+            PropTypes.shape({
+              key: PropTypes.string.isRequired,
+              label: PropTypes.string.isRequired,
+              to: PropTypes.string.isRequired,
+              iconKey: PropTypes.string,
+              iconColor: PropTypes.string,
+            }),
+          ),
         }),
       ).isRequired,
     }),
   ),
   onNavigate: PropTypes.func,
+  collapsed: PropTypes.bool,
 };
 
 SidebarNav.defaultProps = {
   sections: [],
   onNavigate: null,
+  collapsed: false,
 };
 
 export default SidebarNav;

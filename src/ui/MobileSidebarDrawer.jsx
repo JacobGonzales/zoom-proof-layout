@@ -28,13 +28,16 @@ function MobileSidebarDrawer({
       />
       <aside
         className={[
-          "absolute left-0 top-0 h-dvh w-80 p-4 transform transition-transform duration-300 ease-out",
+          "absolute left-0 top-0 h-dvh w-[min(92vw,360px)] p-4 transform transition-transform duration-300 ease-out",
           open ? "translate-x-0" : "-translate-x-full",
         ].join(" ")}
       >
         <SidebarPanel>
           <div className="flex items-start justify-between">
             <div className="flex-1 px-6 pt-8">
+              <div className="text-xs font-extrabold uppercase tracking-[0.24em] text-slate-500 dark:text-white/55">
+                SENTINEL
+              </div>
               <div className="text-lg font-extrabold tracking-wide text-[#5e73e5]">
                 {brandTitle}
               </div>

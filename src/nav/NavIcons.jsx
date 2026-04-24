@@ -38,6 +38,30 @@ export function TablesIcon() {
   );
 }
 
+export function MapPlotIcon() {
+  return (
+    <Icon>
+      <path
+        d="M4.5 7.5 9.5 5l5 2.5 5-2.5v11.5l-5 2.5-5-2.5-5 2.5V7.5Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9.5 5v11.5M14.5 7.5V19"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M12 9.2a1.6 1.6 0 1 1 0 3.2a1.6 1.6 0 0 1 0-3.2Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      />
+    </Icon>
+  );
+}
+
 export function ChartIcon() {
   return (
     <Icon>
@@ -49,6 +73,63 @@ export function ChartIcon() {
       />
       <path
         d="M3 20h18"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+    </Icon>
+  );
+}
+
+export function ApertureIcon() {
+  return (
+    <Icon>
+      <circle cx="12" cy="12" r="2.8" stroke="currentColor" strokeWidth="1.8" />
+      <path
+        d="M12 4.5 15 9M19.5 12 15 15M12 19.5 9 15M4.5 12 9 9M9 9l6 0M15 15H9"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Icon>
+  );
+}
+
+export function RadarIcon() {
+  return (
+    <Icon>
+      <path
+        d="M12 5a7 7 0 1 1-7 7"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      <path
+        d="M12 8.5a3.5 3.5 0 1 1-3.5 3.5"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      <path
+        d="M12 12 18 6"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      <circle cx="12" cy="12" r="1.2" fill="currentColor" />
+    </Icon>
+  );
+}
+
+export function NodesIcon() {
+  return (
+    <Icon>
+      <circle cx="7" cy="8" r="2" stroke="currentColor" strokeWidth="1.8" />
+      <circle cx="17" cy="7" r="2" stroke="currentColor" strokeWidth="1.8" />
+      <circle cx="12" cy="17" r="2.2" stroke="currentColor" strokeWidth="1.8" />
+      <path
+        d="M8.8 9.1 10.7 14M15.2 8.6 13.3 14M9 8h6"
         stroke="currentColor"
         strokeWidth="1.8"
         strokeLinecap="round"
@@ -83,6 +164,22 @@ export function SparkIcon() {
   );
 }
 
+export function RouteIcon() {
+  return (
+    <Icon>
+      <circle cx="6.5" cy="16.5" r="1.8" fill="currentColor" />
+      <circle cx="17.5" cy="7.5" r="1.8" fill="currentColor" />
+      <path
+        d="M8.5 16.5h3.2a3 3 0 0 0 3-3v-3a3 3 0 0 1 3-3H19"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Icon>
+  );
+}
+
 export function SettingsIcon() {
   return (
     <Icon>
@@ -95,6 +192,20 @@ export function SettingsIcon() {
         d="M19 12a7.6 7.6 0 0 0-.1-1l2-1.6-2-3.4-2.4 1a8.2 8.2 0 0 0-1.7-1l-.3-2.5h-4l-.3 2.5a8.2 8.2 0 0 0-1.7 1l-2.4-1-2 3.4 2 1.6a7.6 7.6 0 0 0 0 2l-2 1.6 2 3.4 2.4-1a8.2 8.2 0 0 0 1.7 1l.3 2.5h4l.3-2.5a8.2 8.2 0 0 0 1.7-1l2.4 1 2-3.4-2-1.6c.1-.3.1-.7.1-1Z"
         stroke="currentColor"
         strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+    </Icon>
+  );
+}
+
+export function LayersIcon() {
+  return (
+    <Icon>
+      <path
+        d="m12 4 7 4-7 4-7-4 7-4ZM5 12l7 4 7-4M5 16l7 4 7-4"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
         strokeLinejoin="round"
       />
     </Icon>
@@ -156,12 +267,18 @@ export function WalletIcon() {
 export function CompassIcon() {
   return (
     <Icon>
-      <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.8" />
+      <circle cx="12" cy="12" r="7.5" stroke="currentColor" strokeWidth="1.8" />
       <path
-        d="m10 14 1.8-4.8L16.5 7 14 11.7 10 14Z"
+        d="m10 14 2-5 4-1-1 4-5 2Z"
         stroke="currentColor"
         strokeWidth="1.8"
         strokeLinejoin="round"
+      />
+      <path
+        d="M12 6.5v1.5M17.5 12h-1.5M12 17.5V16M6.5 12H8"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
       />
     </Icon>
   );
@@ -189,6 +306,58 @@ export function GridIcon() {
         strokeWidth="1.8"
         strokeLinejoin="round"
       />
+    </Icon>
+  );
+}
+
+export function FileIcon() {
+  return (
+    <Icon>
+      <path
+        d="M8 4h6l4 4v12H8a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M14 4v4h4"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+    </Icon>
+  );
+}
+
+export function RocketIcon() {
+  return (
+    <Icon>
+      <path
+        d="M14.5 5.2c2.2.2 4.1 2.1 4.3 4.3l-4.7 4.7-3.8-.5-.5-3.8 4.7-4.7Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M10.5 13.5 7 17M8.4 19.2l.5-2.3-1.8-1.8-2.3.5 1.8 1.8 1.8 1.8Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M13.3 10.7 9.8 14.2"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      <path
+        d="M9.4 14.6 7.6 16.4"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      <circle cx="15.3" cy="8.7" r="1.1" fill="currentColor" />
     </Icon>
   );
 }
